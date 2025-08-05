@@ -8,7 +8,7 @@ import logging
 import unicodedata # NOWY IMPORT: dla normalizacji znaków
 
 # Importujemy konfigurację z naszego pliku config.py
-from app import config
+from . import config
 
 logger = logging.getLogger(__name__)
 
