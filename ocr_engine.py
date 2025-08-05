@@ -6,7 +6,7 @@ from typing import Optional, List
 from PIL import Image # Do manipulacji obrazami
 import pytesseract    # Do wywoływania Tesseract OCR
 
-from app import config
+from . import config
 
 # Logger dla tego modułu
 logger = logging.getLogger(__name__)
