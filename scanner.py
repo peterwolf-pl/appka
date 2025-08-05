@@ -6,10 +6,10 @@ import time
 from pathlib import Path
 from typing import Dict, Any, Optional, List # Pamiętaj o imporcie List!
 
-from app import config
-from app import utils
-from app.db_manager import DBManager # Importujemy klasę DBManager (Singleton)
-from app.ocr_engine import OCREngine # Importujemy klasę OCREngine (Singleton)
+from . import config
+from . import utils
+from .db_manager import DBManager # Importujemy klasę DBManager (Singleton)
+from .ocr_engine import OCREngine # Importujemy klasę OCREngine (Singleton)
 
 # Logger dla tego modułu
 logger = logging.getLogger(__name__)
@@ -334,7 +334,7 @@ if __name__ == "__main__":
 
     # Czyszczenie starych danych z DB i processed/
     try:
-        if db_manager.books_collection:
+        if db_manager.books_collection is not None:
             db_manager.books_collection.delete_many({"book_hash": {"$in": [temp_test_book_hash_1, temp_test_book_hash_2]}})
             logger.info("Usunięto stare książki testowe z DB.")
         
@@ -358,7 +358,7 @@ if __name__ == "__main__":
     # Używamy Pillow do tworzenia pustych PNG, aby symulować pliki graficzne
     # (dla prawdziwego OCR, to musiałyby być obrazy z tekstem)
     try:
-        from PIL import ImageDraw, ImageFont
+        from PIL import Image, ImageDraw, ImageFont
         test_image_names = [
             "TestKsiazka_s0001.jpg",
             "TestKsiazka_s0002.png",
@@ -436,7 +436,7 @@ if __name__ == "__main__":
 
     logger.info("\n--- Końcowe czyszczenie danych testowych ---")
     try:
-        if db_manager.books_collection:
+        if db_manager.books_collection is not None:
             db_manager.books_collection.delete_many({"book_hash": {"$in": [temp_test_book_hash_1, temp_test_book_hash_2]}})
             logger.info("Usunięto wszystkie książki testowe z DB.")
         

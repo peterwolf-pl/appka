@@ -9,8 +9,8 @@ import json # Do zapisu/odczytu lokalnych metadata.json
 from pathlib import Path
 from bson import ObjectId # Do obsługi identyfikatorów MongoDB
 
-from app import config
-from app import utils # Będziemy używać generate_book_hash z utils
+from . import config
+from . import utils # Będziemy używać generate_book_hash z utils
 
 # Logger dla tego modułu
 logger = logging.getLogger(__name__)
